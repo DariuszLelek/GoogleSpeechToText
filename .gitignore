@@ -39,6 +39,10 @@ $RECYCLE.BIN/
 .Trashes
 .VolumeIcon.icns
 
+# Netbeans
+/nbproject/
+nbactions.xml
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
@@ -46,5 +50,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /target/
-/nbproject/
 /log/
