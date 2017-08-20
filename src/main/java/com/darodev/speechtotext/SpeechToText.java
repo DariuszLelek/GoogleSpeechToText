@@ -33,8 +33,12 @@ import java.util.stream.Collectors;
  */
 public class SpeechToText {
 
-    public List<String> getTextsListFromAudio(final RecognitionAudio audio, final RecognitionConfig config) {
-        List<String> result = getTranscriptTextsList(getRecognitionResultsList(audio, config));
+    public List<String> getTextsListFromAudio(final String fileName, final Configuration configuration) {
+        LogUtility.logInfo(SpeechToText.class, "getTextsListFromAudio - request for file: " + fileName + " , config: " + configuration.toString());
+        
+        List<String> result = getTranscriptTextsList(getRecognitionResultsList(
+                AudioProvider.getRecognitionAudio(fileName),
+                RecognitionConfigFactory.getRecognitionConfig(configuration)));
         
         LogUtility.logInfo(SpeechToText.class, "getTextsListFromAudio - response: " + String.join(",", result));
         
@@ -57,8 +61,9 @@ public class SpeechToText {
 
         try (SpeechClient speech = SpeechClient.create()) {
             LogUtility.logInfo(SpeechToText.class, "tryGetRecognizeResponse - Sending recognize request. File size: " + audio.getSerializedSize());
+            
             // comment this for testing - dont send requests
-            // response = speech.recognize(config, audio);
+            response = speech.recognize(config, audio);
         } catch (Exception ex) {
             LogUtility.logError(SpeechToText.class, "tryGetRecognizeResponse - Error during speech.recognize()", ex);
         }
