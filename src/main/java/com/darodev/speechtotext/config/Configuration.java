@@ -51,4 +51,10 @@ public enum Configuration {
         return languageCode;
     }
 
+    @Override
+    public String toString() {
+        return "Encoding[" + encoding.name() + "] SampleRate(Hz)[" + sampleRateHertz + "] Language[" + languageCode + "]";
+    }
+
+    
 }
