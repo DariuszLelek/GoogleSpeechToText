@@ -17,6 +17,7 @@ package com.darodev.speechtotext;
 
 import com.google.cloud.speech.v1.RecognitionAudio;
 import com.darodev.speechtotext.utility.FileUtilityTest;
+import com.darodev.speechtotext.utility.LogUtility;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -46,7 +47,7 @@ public class AudioProviderTest {
      */
     @Test
     public void testGetDefaultRecognitionAudio() {
-        System.out.println("getDefaultRecognitionAudio");
+        LogUtility.logInfo(AudioProviderTest.class, "test: getDefaultRecognitionAudio");
 
         RecognitionAudio expected = RecognitionAudio.getDefaultInstance();
 
@@ -58,7 +59,7 @@ public class AudioProviderTest {
      */
     @Test
     public void testGetRecognitionAudio_String() {
-        System.out.println("getRecognitionAudio");
+        LogUtility.logInfo(AudioProviderTest.class, "test: getRecognitionAudio");
 
         int testFileSerializedSizeExpected = 57962;
         RecognitionAudio recognitionAudioActual = AudioProvider.getRecognitionAudio(FileUtilityTest.TEST_FILE_LOCATION);

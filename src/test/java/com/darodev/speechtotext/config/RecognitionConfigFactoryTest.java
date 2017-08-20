@@ -15,6 +15,7 @@
  */
 package com.darodev.speechtotext.config;
 
+import com.darodev.speechtotext.utility.LogUtility;
 import com.google.cloud.speech.v1.RecognitionConfig;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -43,7 +44,8 @@ public class RecognitionConfigFactoryTest {
      */
     @Test
     public void testGetRecognitionConfig() {
-        System.out.println("getRecognitionConfig");
+        LogUtility.logInfo(RecognitionConfigFactoryTest.class, "test: getRecognitionConfig");
+                
         Configuration configurationNull = null;
         Configuration configurationDefault = Configuration.DEFAULT;
         Configuration configurationLinear16 = Configuration.LINEAR16_16_EN;

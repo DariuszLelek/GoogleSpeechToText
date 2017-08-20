@@ -26,7 +26,6 @@ import java.nio.file.Paths;
  * @author Dariusz Lelek
  */
 public class FileUtility {
-
     public static byte[] getFileData(final String fileName){
         return getFileData(getPath(fileName));
     }
@@ -39,9 +38,7 @@ public class FileUtility {
                 path = Paths.get(fileName);
             }
         } catch (Exception ex) {
-            // TODO
-            System.out.println("path exception");
-            ex.printStackTrace();
+            LogUtility.logError(FileUtility.class, "Error during Paths.get()", ex);
         }
 
         return path;
@@ -55,9 +52,7 @@ public class FileUtility {
                 data = Files.readAllBytes(path);
             }
         } catch (IOException ex) {
-            // TODO
-            System.out.println("get file data ex");
-            ex.printStackTrace();
+            LogUtility.logError(FileUtility.class, "Error during Files.readAllBytes()", ex);
         }
 
         return data != null ? data : new byte[0];

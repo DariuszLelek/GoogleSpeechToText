@@ -17,6 +17,7 @@ package com.darodev.speechtotext;
 
 import com.darodev.speechtotext.config.RecognitionConfigFactory;
 import com.darodev.speechtotext.config.Configuration;
+import com.darodev.speechtotext.utility.LogUtility;
 import com.google.cloud.speech.v1.RecognitionAudio;
 import com.google.cloud.speech.v1.RecognitionConfig;
 import com.google.cloud.speech.v1.RecognizeResponse;
@@ -33,7 +34,11 @@ import java.util.stream.Collectors;
 public class SpeechToText {
 
     public List<String> getTextsListFromAudio(final RecognitionAudio audio, final RecognitionConfig config) {
-        return getTranscriptTextsList(getRecognitionResultsList(audio, config));
+        List<String> result = getTranscriptTextsList(getRecognitionResultsList(audio, config));
+        
+        LogUtility.logInfo(SpeechToText.class, "getTextsListFromAudio - response: " + String.join(",", result));
+        
+        return result;
     }
 
     private List<String> getTranscriptTextsList(final List<SpeechRecognitionResult> results) {
@@ -51,11 +56,11 @@ public class SpeechToText {
         RecognizeResponse response = RecognizeResponse.getDefaultInstance();
 
         try (SpeechClient speech = SpeechClient.create()) {
+            LogUtility.logInfo(SpeechToText.class, "tryGetRecognizeResponse - Sending recognize request. File size: " + audio.getSerializedSize());
             // comment this for testing - dont send requests
-            response = speech.recognize(config, audio);
+            // response = speech.recognize(config, audio);
         } catch (Exception ex) {
-            // TODO
-            ex.printStackTrace();
+            LogUtility.logError(SpeechToText.class, "tryGetRecognizeResponse - Error during speech.recognize()", ex);
         }
 
         return response;

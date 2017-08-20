@@ -15,7 +15,6 @@
  */
 package com.darodev.speechtotext.utility;
 
-import com.darodev.speechtotext.utility.FileUtility;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -44,7 +43,7 @@ public class FileUtilityTest {
      */
     @Test
     public void testGetFileData() {
-        System.out.println("getFileData");
+        LogUtility.logInfo(FileUtilityTest.class, "test: getFileData");
         
         byte[] expResult = new byte[0];
         String fileNameNull = null;

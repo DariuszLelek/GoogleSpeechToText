@@ -38,6 +38,6 @@ public class TestClassMain {
         
         List<String> texts = service.getTextsListFromAudio(audio, config);
         
-        System.out.println("texts size: " + texts.size());
+        
     }
 }
