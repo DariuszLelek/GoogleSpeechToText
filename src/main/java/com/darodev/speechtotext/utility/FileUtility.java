@@ -38,7 +38,7 @@ public class FileUtility {
                 path = Paths.get(fileName);
             }
         } catch (Exception ex) {
-            LogUtility.logError(FileUtility.class, "Error during Paths.get()", ex);
+            LogUtility.logError(FileUtility.class, "getPath - Error during Paths.get()", ex);
         }
 
         return path;
@@ -52,7 +52,7 @@ public class FileUtility {
                 data = Files.readAllBytes(path);
             }
         } catch (IOException ex) {
-            LogUtility.logError(FileUtility.class, "Error during Files.readAllBytes()", ex);
+            LogUtility.logError(FileUtility.class, "getFileData - Error during Files.readAllBytes()", ex);
         }
 
         return data != null ? data : new byte[0];
